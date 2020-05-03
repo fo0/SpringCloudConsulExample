@@ -18,3 +18,7 @@ docker exec badger consul members
 
 ### Check Consul UI
 ```http://localhost:8500/```
+
+
+References
+- https://learn.hashicorp.com/consul/day-0/containers-guide
