@@ -22,3 +22,4 @@ docker exec badger consul members
 
 References
 - https://learn.hashicorp.com/consul/day-0/containers-guide
+- https://spring.io/projects/spring-cloud-consul
