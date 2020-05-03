@@ -1,0 +1,7 @@
+#spring:
+#  cloud:
+#    consul:
+#      config:
+#        enabled: true
+#        defaultContext: apps
+#        profileSeparator: '::'

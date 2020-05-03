@@ -1,7 +1,5 @@
 package com.fo0.spring.cloud.consul.example;
 
-import java.net.URI;
-
 import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -24,7 +22,10 @@ public class Main {
 	public static final String NAME = "example-service"; // + RandomStringUtils.randomAlphanumeric(10);
 
 	@Autowired
-	private DiscoveryClient client;
+	private DiscoveryClient dClient;
+
+	@Autowired
+	private ConsulDataAccess cClient;
 
 	public static void main(String[] args) {
 		// @formatter:off
@@ -40,12 +41,21 @@ public class Main {
 		// @formatter:on
 	}
 
+	@Scheduled(fixedRate = 1000 * 10)
+	public void changeValue() {
+		String s = RandomStringUtils.randomAlphanumeric(10);
+		log.info("changing value to: " + s);
+		cClient.setMyChangeValue(s);
+	}
+
 	@Scheduled(fixedRate = 1000 * 5)
 	public void cron() {
 		try {
 			log.info("-------------------------------------------------------------------------");
-			client.getInstances(Main.NAME).stream().forEach(log::info);
-			ServiceInstance uri = client.getInstances(Main.NAME).stream().findAny().orElse(null);
+//			client.getInstances(Main.NAME).stream().forEach(log::info);
+			ServiceInstance uri = dClient.getInstances(Main.NAME).stream().findAny().orElse(null);
+			log.info("Any Service URI: " + uri);
+			log.info("Changing Value: " + cClient.getMyChangeValue().getValue());
 			log.info("-------------------------------------------------------------------------");
 		} catch (Exception e) {
 			log.error("error");
