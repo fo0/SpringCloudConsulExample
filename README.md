@@ -15,3 +15,6 @@ docker run --name=fox consul agent -node=client-1 -join=172.17.0.2
 ```bash
 docker exec badger consul members
 ```
+
+### Check Consul UI
+```http://localhost:8500/```
