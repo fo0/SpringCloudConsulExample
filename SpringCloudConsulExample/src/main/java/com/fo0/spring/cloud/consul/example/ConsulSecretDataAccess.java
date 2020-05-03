@@ -8,7 +8,7 @@ import com.ecwid.consul.v1.Response;
 import com.ecwid.consul.v1.kv.model.GetValue;
 
 @Component
-public class ConsulDataAccess {
+public class ConsulSecretDataAccess {
 
 	@Autowired
 	private ConsulClient cClient;

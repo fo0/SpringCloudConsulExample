@@ -25,7 +25,7 @@ public class Main {
 	private DiscoveryClient dClient;
 
 	@Autowired
-	private ConsulDataAccess cClient;
+	private ConsulSecretDataAccess cClient;
 
 	public static void main(String[] args) {
 		// @formatter:off
